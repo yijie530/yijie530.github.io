@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yijie530.github.io">
-  <title>tags | Erxn</title>
+  <title>centos7上redis安装 | Erxn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://yijie530.github.io/tags/index.html">
+  <meta name="description" content="关闭防火墙123systemctl stop firewalld.service #停止firewallsystemctl disable firewalld.service #禁止firewall开机启动firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running） 查看并安装编译环境12yum list installed | gre">
+<meta name="keywords" content="redis,centos,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7上redis安装">
+<meta property="og:url" content="https://yijie530.github.io/2018/06/08/centos7上redis安装/index.html">
 <meta property="og:site_name" content="Erxn">
+<meta property="og:description" content="关闭防火墙123systemctl stop firewalld.service #停止firewallsystemctl disable firewalld.service #禁止firewall开机启动firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running） 查看并安装编译环境12yum list installed | gre">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-01T05:53:38.538Z">
+<meta property="og:updated_time" content="2018-06-08T08:25:22.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="centos7上redis安装">
+<meta name="twitter:description" content="关闭防火墙123systemctl stop firewalld.service #停止firewallsystemctl disable firewalld.service #禁止firewall开机启动firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running） 查看并安装编译环境12yum list installed | gre">
   
     <link rel="alternative" href="/atom.xml" title="Erxn" type="application/atom+xml">
   
@@ -137,27 +141,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-centos7上redis安装" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      centos7上redis安装
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2018-06-01T05:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-01</time>
+        <a href="/2018/06/08/centos7上redis安装/" class="archive-article-date">
+  	<time datetime="2018-06-08T05:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service <span class="comment">#停止firewall</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service <span class="comment">#禁止firewall开机启动</span></span><br><span class="line">firewall-cmd --state <span class="comment">#查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看并安装编译环境"><a href="#查看并安装编译环境" class="headerlink" title="查看并安装编译环境"></a>查看并安装编译环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum list installed | grep gcc-c++ <span class="comment">#没有记录就是没有安装</span></span><br><span class="line">yum install -y gcc-c++ 	<span class="comment">#安装gcc-c++</span></span><br></pre></td></tr></table></figure>
+<h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>到<a href="https://redis.io/download" target="_blank" rel="noopener">redis</a>官网查看最新的版本，获取最新的下载链接，使用wget下载。本例中下载的版本是4.0.9<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz</span><br></pre></td></tr></table></figure></p>
+<h2 id="解压编译安装"><a href="#解压编译安装" class="headerlink" title="解压编译安装"></a>解压编译安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf redis-4.0.9.tar.gz </span><br><span class="line">cp -rf redis-4.0.9 /usr/<span class="built_in">local</span>/redis</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">src/redis-server redis.conf  <span class="comment">#启动redis服务</span></span><br><span class="line">src/redis-cli <span class="comment">#打开客户端</span></span><br><span class="line"><span class="built_in">set</span> foo boo</span><br><span class="line">get foo</span><br></pre></td></tr></table></figure>
+<h2 id="开启redis服务器远程访问"><a href="#开启redis服务器远程访问" class="headerlink" title="开启redis服务器远程访问"></a>开启redis服务器远程访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
+<p>找到bind 127.0.0.1,在前面加上’#’注释掉<br>找到protected-mode yes，修改为protected-mode no</p>
+<h2 id="安装成服务"><a href="#安装成服务" class="headerlink" title="安装成服务"></a>安装成服务</h2><p>copy redis_init_script到/etc/init.d/redis<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp utils/redis_init_script /etc/init.d/redis</span><br></pre></td></tr></table></figure></p>
+<p>编辑redis，添加一段注释在文件头部，支持chkconfig命令，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/redis</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"><span class="comment"># chkconfig: 2345 90 10</span></span><br><span class="line"><span class="comment"># description: redis</span></span><br><span class="line"><span class="comment"># ... (省略代码)</span></span><br><span class="line"> <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="string">"password"</span> shutdown</span><br><span class="line"><span class="comment"># ... (省略代码)</span></span><br></pre></td></tr></table></figure>
+<p>在etc下创建redis目录，并copy redis.conf到该目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/redis</span><br><span class="line">cp redis.conf /etc/redis/6379.conf</span><br></pre></td></tr></table></figure></p>
+<p>编辑一下6379.conf文件，将daemonize 的 no 值改成 yes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/redis/6379.conf</span><br></pre></td></tr></table></figure></p>
+<p>设置开机启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/redis</span><br><span class="line">chkconfig redis on	<span class="comment">#设置开机启动</span></span><br><span class="line">service redis start	<span class="comment">#启动redis服务</span></span><br><span class="line">service redis stop  <span class="comment">#停止redis服务</span></span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -165,7 +182,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/redis//" class="article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -215,7 +262,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yijie530.github.io/tags/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yijie530.github.io/2018/06/08/centos7上redis安装/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -227,6 +274,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/07/windows10-完美解决快捷方式小箭头/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows10 完美解决快捷方式小箭头</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -277,7 +334,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
