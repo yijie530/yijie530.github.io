@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yijie530.github.io">
-  <title>tags | Erxn</title>
+  <title>Spring缓存注解的使用 | Erxn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://yijie530.github.io/tags/index.html">
+  <meta name="description" content="&amp;emsp;&amp;emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我">
+<meta name="keywords" content="java,spring,cache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring缓存注解的使用">
+<meta property="og:url" content="https://yijie530.github.io/2018/06/11/spring缓存注解的使用/index.html">
 <meta property="og:site_name" content="Erxn">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-01T05:53:38.538Z">
+<meta property="og:updated_time" content="2018-06-12T02:00:19.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="Spring缓存注解的使用">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我">
   
     <link rel="alternative" href="/atom.xml" title="Erxn" type="application/atom+xml">
   
@@ -137,27 +141,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-spring缓存注解的使用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      Spring缓存注解的使用
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2018-06-01T05:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-01</time>
+        <a href="/2018/06/11/spring缓存注解的使用/" class="archive-article-date">
+  	<time datetime="2018-06-11T08:30:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>&emsp;&emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我们要保证我们缓存的方法对于相同的方法参数要有相同的返回结果。<br>&emsp;&emsp;从4.1开始，Spring对引入的Cache进行了改进，提供了JSR107注解支持和更多的定制功能。<br>&emsp;&emsp;使用Spring Cache需要我们做两方面的事情：<br>&emsp;&emsp;&emsp;&emsp;声明某些方法使用缓存（方法命名规则或者注解）<br>&emsp;&emsp;&emsp;&emsp;配置Spring对缓存的支持（AspectJ或者注解驱动）<br>&emsp;&emsp;Spring提供了4个注解来支持Spring Cache，@Cacheable、@CacheEvict、@CachePut、@Caching、@CacheConfig。</p>
+<h2 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable"></a>@Cacheable</h2><p>&emsp;&emsp;@Cacheable可以标记在方法和类上面。当标记在方法上时表示该方法支持缓存，当标记在类上时表示该类的所有方法都是支持缓存的。对于一个支持缓存的方法，Spring会在方法被调用后将返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以不调用方法直接从缓存中获取结果并返回。Spring在缓存方法的返回值时是使用键值对进行缓存的，值就是返回的结果，键则使用相应的策略。@Cacheable的参数说明如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td style="text-align:center">缓存的名称，必须指定，至少一个</td>
+<td style="text-align:center">@Cacheable(value=”mycache”)<br>@Cacheable(value={“cache1”,”cache2”}</td>
+</tr>
+<tr>
+<td>key</td>
+<td style="text-align:center">缓存的 key，可以为空，如果指定要按照 SpEL 表达式编写，如果不指定，则缺省按照方法的所有参数进行组合</td>
+<td style="text-align:center">@Cacheable(value=”mycache”,key=”#id”)</td>
+</tr>
+<tr>
+<td>condition</td>
+<td style="text-align:center">缓存的条件，可以为空，使用 SpEL 编写，返回 true 或者 false，只有为 true 才进行缓存</td>
+<td style="text-align:center">@Cacheable(value=”mycache”,condition=”#id.length()&gt;2”)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(&#123;<span class="string">"books"</span>, <span class="string">"isbns"</span>&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"#isbn"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"#isbn.rawNumber"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"T(someType).hash(#isbn)"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, keyGenerator=<span class="string">"myKeyGenerator"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;key和keyGenerator这2个参数是互斥的，同时提供将导致异常。</p>
+<h2 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut"></a>@CachePut</h2><p>&emsp;&emsp;@CachePut可以标记在类和方法上，表示类或者方法支持缓存功能，表示执行方法前不会去检查缓存中是否存在之前执行的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。使用方式与@Cacheable相同。</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>(cacheNames=<span class="string">"book"</span>, key=<span class="string">"#isbn"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">updateBook</span><span class="params">(ISBN isbn, BookDescriptor descriptor)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict"></a>@CacheEvict</h2><p>&emsp;&emsp;@CacheEvict用来标注在需要清除缓存的类或者方法上面，当标记在类上时表示类中的所有的方法的执行都会触发缓存清除操作。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td style="text-align:center">缓存的名称，必须指定，至少一个</td>
+<td style="text-align:center">@CacheEvict(value=”mycache”)</td>
+</tr>
+<tr>
+<td>key</td>
+<td style="text-align:center">缓存的 key，可以为空，如果指定要按照 SpEL 表达式编写，如果不指定，则缺省按照方法的所有参数进行组合</td>
+<td style="text-align:center">@CacheEvict(value=”mycache”,key=”#id”)</td>
+</tr>
+<tr>
+<td>condition</td>
+<td style="text-align:center">缓存的条件，可以为空，使用 SpEL 编写，返回 true 或者 false，只有为 true 才进行缓存</td>
+<td style="text-align:center">@CacheEvict(value=”mycache”,condition=”#id.length()=32”)</td>
+</tr>
+<tr>
+<td>allEntries</td>
+<td style="text-align:center">是否清空所有缓存内容，缺省为 false，如果指定为 true，则方法调用后将立即清空所有缓存</td>
+<td style="text-align:center">@CachEvict(value=”mycache”,allEntries=true)</td>
+</tr>
+<tr>
+<td>beforeInvocation</td>
+<td style="text-align:center">是否在方法执行前就清空，缺省为 false，如果指定为 true，则在方法还没有执行的时候就清空缓存，缺省情况下，如果方法执行抛出异常，则不会清空缓存</td>
+<td style="text-align:center">@CachEvict(value=”mycache”,beforeInvocation=true)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheEvict</span>(cacheNames=<span class="string">"books"</span>, allEntries=<span class="keyword">true</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadBooks</span><span class="params">(InputStream batch)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Caching"><a href="#Caching" class="headerlink" title="@Caching"></a>@Caching</h2><p>&emsp;&emsp;@Caching注解可以标注在类或者方法上面，表示被标注的类或者方法上可以同时指定多个Spring Cache相关的注解。</p>
+<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(evict = &#123; <span class="meta">@CacheEvict</span>(<span class="string">"primary"</span>), <span class="meta">@CacheEvict</span>(cacheNames=<span class="string">"secondary"</span>, key=<span class="string">"#p0"</span>) &#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">importBooks</span><span class="params">(String deposit, Date date)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="CacheConfig"><a href="#CacheConfig" class="headerlink" title="@CacheConfig"></a>@CacheConfig</h2><p>&emsp;&emsp;@CacheConfig是类级别的注解，@Cacheable、@CachePut、@CacheEvict注解中都有cacheNames、keyGenerator、cacheManager、cacheResolver。而这些都可以通过@CacheConfig在类上面指定。如果方法上的注解提供了相应的属性，以方法上的为准。</p>
+<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookRepositoryImpl</span> <span class="keyword">implements</span> <span class="title">BookRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Cacheable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Cache-SpEL执行上下文"><a href="#Cache-SpEL执行上下文" class="headerlink" title="Cache SpEL执行上下文"></a>Cache SpEL执行上下文</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">位置</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>methoddName</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前被调用方法的名称</td>
+<td style="text-align:center">#root.methodName</td>
+</tr>
+<tr>
+<td>method</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前被调用的方法</td>
+<td style="text-align:center">#root.method.name</td>
+</tr>
+<tr>
+<td>target</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前被调用的目标对象</td>
+<td style="text-align:center">#root.target</td>
+</tr>
+<tr>
+<td>targetClass</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前被调用的目标对象类</td>
+<td style="text-align:center">#root.targetClass</td>
+</tr>
+<tr>
+<td>args</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前被调用的方法的参数列表（如@Cacheable(value={“cache1”, “cache2”})），则有两个cache</td>
+<td style="text-align:center">#root.args[0]</td>
+</tr>
+<tr>
+<td>caches</td>
+<td style="text-align:center">root对象</td>
+<td style="text-align:center">当前方法调用使用的缓存列表</td>
+<td style="text-align:center">#root.caches[0].name</td>
+</tr>
+<tr>
+<td>argument name</td>
+<td style="text-align:center">执行上下文</td>
+<td style="text-align:center">当前被调用的方法的参数，如findById(Long id)，我们可以通过#id拿到参数</td>
+<td style="text-align:center">#iban or #a0 (one can also use #p0 or #p&lt;#arg&gt; notation as an alias).</td>
+</tr>
+<tr>
+<td>result</td>
+<td style="text-align:center">执行上下文</td>
+<td style="text-align:center">方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’，’cache evict’的beforeInvocation=false）</td>
+<td style="text-align:center">#result</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://docs.spring.io/spring/docs/4.3.17.RELEASE/spring-framework-reference/htmlsingle/#cache" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/4.3.17.RELEASE/spring-framework-reference/htmlsingle/#cache</a></p>
+
       
 
       
@@ -165,7 +304,41 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cache</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring/cache//" class="article-tag-list-link color1">cache</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -215,7 +388,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yijie530.github.io/tags/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yijie530.github.io/2018/06/11/spring缓存注解的使用/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -227,6 +400,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/08/centos7上redis安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centos7上redis安装</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -277,7 +460,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
