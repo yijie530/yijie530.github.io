@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Erxn">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-12T02:00:19.966Z">
+<meta property="og:updated_time" content="2018-06-12T05:55:39.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring缓存注解的使用">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我">
@@ -161,7 +161,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我们要保证我们缓存的方法对于相同的方法参数要有相同的返回结果。<br>&emsp;&emsp;从4.1开始，Spring对引入的Cache进行了改进，提供了JSR107注解支持和更多的定制功能。<br>&emsp;&emsp;使用Spring Cache需要我们做两方面的事情：<br>&emsp;&emsp;&emsp;&emsp;声明某些方法使用缓存（方法命名规则或者注解）<br>&emsp;&emsp;&emsp;&emsp;配置Spring对缓存的支持（AspectJ或者注解驱动）<br>&emsp;&emsp;Spring提供了4个注解来支持Spring Cache，@Cacheable、@CacheEvict、@CachePut、@Caching、@CacheConfig。</p>
+        <p>&emsp;&emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我们要保证我们缓存的方法对于相同的方法参数要有相同的返回结果。<br><a id="more"></a><br>&emsp;&emsp;从4.1开始，Spring对引入的Cache进行了改进，提供了JSR107注解支持和更多的定制功能。<br>&emsp;&emsp;使用Spring Cache需要我们做两方面的事情：<br>&emsp;&emsp;&emsp;&emsp;声明某些方法使用缓存（方法命名规则或者注解）<br>&emsp;&emsp;&emsp;&emsp;配置Spring对缓存的支持（AspectJ或者注解驱动）<br>&emsp;&emsp;Spring提供了4个注解来支持Spring Cache，@Cacheable、@CacheEvict、@CachePut、@Caching、@CacheConfig。</p>
 <h2 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable"></a>@Cacheable</h2><p>&emsp;&emsp;@Cacheable可以标记在方法和类上面。当标记在方法上时表示该方法支持缓存，当标记在类上时表示该类的所有方法都是支持缓存的。对于一个支持缓存的方法，Spring会在方法被调用后将返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以不调用方法直接从缓存中获取结果并返回。Spring在缓存方法的返回值时是使用键值对进行缓存的，值就是返回的结果，键则使用相应的策略。@Cacheable的参数说明如下：</p>
 <table>
 <thead>
@@ -402,6 +402,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/06/29/design-pattern/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/06/08/centos7上redis安装/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">centos7上redis安装</div>
@@ -522,7 +531,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,7 +551,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,14 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">window</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
               </li>
             
             <div class="clearfix"></div>

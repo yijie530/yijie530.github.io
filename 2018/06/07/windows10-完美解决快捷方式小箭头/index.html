@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yijie530.github.io">
   <title>windows10 完美解决快捷方式小箭头 | Erxn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开 123456reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons&quot; /v 29 /d &quot;%systemroot%\system32\imageres.dll,197&quot; /t reg">
+  <meta name="description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开">
 <meta name="keywords" content="window">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows10 完美解决快捷方式小箭头">
 <meta property="og:url" content="https://yijie530.github.io/2018/06/07/windows10-完美解决快捷方式小箭头/index.html">
 <meta property="og:site_name" content="Erxn">
-<meta property="og:description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开 123456reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons&quot; /v 29 /d &quot;%systemroot%\system32\imageres.dll,197&quot; /t reg">
+<meta property="og:description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-07T05:43:39.425Z">
+<meta property="og:updated_time" content="2018-06-12T05:56:43.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows10 完美解决快捷方式小箭头">
-<meta name="twitter:description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开 123456reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons&quot; /v 29 /d &quot;%systemroot%\system32\imageres.dll,197&quot; /t reg">
+<meta name="twitter:description" content="去掉小箭头复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开">
   
     <link rel="alternative" href="/atom.xml" title="Erxn" type="application/atom+xml">
   
@@ -161,8 +161,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="去掉小箭头"><a href="#去掉小箭头" class="headerlink" title="去掉小箭头"></a>去掉小箭头</h1><p>复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v <span class="number">29</span> /d "<span class="variable">%systemroot%</span>\system32\imageres.dll,<span class="number">197</span>" /t reg_sz /f</span><br><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe</span><br><span class="line"><span class="built_in">attrib</span> -s -r -h "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db"</span><br><span class="line"><span class="built_in">del</span> "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db" /f /q</span><br><span class="line"><span class="built_in">start</span> explorer</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+        <h1 id="去掉小箭头"><a href="#去掉小箭头" class="headerlink" title="去掉小箭头"></a>去掉小箭头</h1><p>复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开<br><a id="more"></a><br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v <span class="number">29</span> /d "<span class="variable">%systemroot%</span>\system32\imageres.dll,<span class="number">197</span>" /t reg_sz /f</span><br><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe</span><br><span class="line"><span class="built_in">attrib</span> -s -r -h "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db"</span><br><span class="line"><span class="built_in">del</span> "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db" /f /q</span><br><span class="line"><span class="built_in">start</span> explorer</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="恢复小箭头"><a href="#恢复小箭头" class="headerlink" title="恢复小箭头"></a>恢复小箭头</h1><p>同理，将下面代码另存为.bat文件，管理员身份打开。就可恢复小箭头了。</p>
 <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v <span class="number">29</span> /f</span><br><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe</span><br><span class="line"><span class="built_in">attrib</span> -s -r -h "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db"</span><br><span class="line"><span class="built_in">del</span> "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db" /f /q</span><br><span class="line"><span class="built_in">start</span> explorer</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
       
@@ -387,7 +386,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -403,7 +406,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,14 +423,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">window</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
               </li>
             
             <div class="clearfix"></div>

@@ -138,6 +138,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-design-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/29/design-pattern/">设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/29/design-pattern/" class="archive-article-date">
+  	<time datetime="2018-06-29T05:58:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><p>&emsp;&emsp;总体来说设计模式分为三大类<br>&emsp;&emsp;创建型模式：共五种，工厂方法模式、抽象工厂模式、单例模式、创建者模式、原型模式。<br>&emsp;&emsp;结构型模式：共七种，适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。<br>&emsp;&emsp;行为型模式：共十一种，策略模式、模版方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。<br>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/design-pattern//" class="article-tag-list-link color5">design pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/29/design-pattern/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spring缓存注解的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -158,142 +247,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我们要保证我们缓存的方法对于相同的方法参数要有相同的返回结果。<br>&emsp;&emsp;从4.1开始，Spring对引入的Cache进行了改进，提供了JSR107注解支持和更多的定制功能。<br>&emsp;&emsp;使用Spring Cache需要我们做两方面的事情：<br>&emsp;&emsp;&emsp;&emsp;声明某些方法使用缓存（方法命名规则或者注解）<br>&emsp;&emsp;&emsp;&emsp;配置Spring对缓存的支持（AspectJ或者注解驱动）<br>&emsp;&emsp;Spring提供了4个注解来支持Spring Cache，@Cacheable、@CacheEvict、@CachePut、@Caching、@CacheConfig。</p>
-<h2 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable"></a>@Cacheable</h2><p>&emsp;&emsp;@Cacheable可以标记在方法和类上面。当标记在方法上时表示该方法支持缓存，当标记在类上时表示该类的所有方法都是支持缓存的。对于一个支持缓存的方法，Spring会在方法被调用后将返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以不调用方法直接从缓存中获取结果并返回。Spring在缓存方法的返回值时是使用键值对进行缓存的，值就是返回的结果，键则使用相应的策略。@Cacheable的参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>value</td>
-<td style="text-align:center">缓存的名称，必须指定，至少一个</td>
-<td style="text-align:center">@Cacheable(value=”mycache”)<br>@Cacheable(value={“cache1”,”cache2”}</td>
-</tr>
-<tr>
-<td>key</td>
-<td style="text-align:center">缓存的 key，可以为空，如果指定要按照 SpEL 表达式编写，如果不指定，则缺省按照方法的所有参数进行组合</td>
-<td style="text-align:center">@Cacheable(value=”mycache”,key=”#id”)</td>
-</tr>
-<tr>
-<td>condition</td>
-<td style="text-align:center">缓存的条件，可以为空，使用 SpEL 编写，返回 true 或者 false，只有为 true 才进行缓存</td>
-<td style="text-align:center">@Cacheable(value=”mycache”,condition=”#id.length()&gt;2”)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(&#123;<span class="string">"books"</span>, <span class="string">"isbns"</span>&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"#isbn"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"#isbn.rawNumber"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, key=<span class="string">"T(someType).hash(#isbn)"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">@<span class="title">Cacheable</span><span class="params">(cacheNames=<span class="string">"books"</span>, keyGenerator=<span class="string">"myKeyGenerator"</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn, <span class="keyword">boolean</span> checkWarehouse, <span class="keyword">boolean</span> includeUsed)</span></span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;key和keyGenerator这2个参数是互斥的，同时提供将导致异常。</p>
-<h2 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut"></a>@CachePut</h2><p>&emsp;&emsp;@CachePut可以标记在类和方法上，表示类或者方法支持缓存功能，表示执行方法前不会去检查缓存中是否存在之前执行的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。使用方式与@Cacheable相同。</p>
-<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>(cacheNames=<span class="string">"book"</span>, key=<span class="string">"#isbn"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">updateBook</span><span class="params">(ISBN isbn, BookDescriptor descriptor)</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict"></a>@CacheEvict</h2><p>&emsp;&emsp;@CacheEvict用来标注在需要清除缓存的类或者方法上面，当标记在类上时表示类中的所有的方法的执行都会触发缓存清除操作。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>value</td>
-<td style="text-align:center">缓存的名称，必须指定，至少一个</td>
-<td style="text-align:center">@CacheEvict(value=”mycache”)</td>
-</tr>
-<tr>
-<td>key</td>
-<td style="text-align:center">缓存的 key，可以为空，如果指定要按照 SpEL 表达式编写，如果不指定，则缺省按照方法的所有参数进行组合</td>
-<td style="text-align:center">@CacheEvict(value=”mycache”,key=”#id”)</td>
-</tr>
-<tr>
-<td>condition</td>
-<td style="text-align:center">缓存的条件，可以为空，使用 SpEL 编写，返回 true 或者 false，只有为 true 才进行缓存</td>
-<td style="text-align:center">@CacheEvict(value=”mycache”,condition=”#id.length()=32”)</td>
-</tr>
-<tr>
-<td>allEntries</td>
-<td style="text-align:center">是否清空所有缓存内容，缺省为 false，如果指定为 true，则方法调用后将立即清空所有缓存</td>
-<td style="text-align:center">@CachEvict(value=”mycache”,allEntries=true)</td>
-</tr>
-<tr>
-<td>beforeInvocation</td>
-<td style="text-align:center">是否在方法执行前就清空，缺省为 false，如果指定为 true，则在方法还没有执行的时候就清空缓存，缺省情况下，如果方法执行抛出异常，则不会清空缓存</td>
-<td style="text-align:center">@CachEvict(value=”mycache”,beforeInvocation=true)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheEvict</span>(cacheNames=<span class="string">"books"</span>, allEntries=<span class="keyword">true</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadBooks</span><span class="params">(InputStream batch)</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="Caching"><a href="#Caching" class="headerlink" title="@Caching"></a>@Caching</h2><p>&emsp;&emsp;@Caching注解可以标注在类或者方法上面，表示被标注的类或者方法上可以同时指定多个Spring Cache相关的注解。</p>
-<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(evict = &#123; <span class="meta">@CacheEvict</span>(<span class="string">"primary"</span>), <span class="meta">@CacheEvict</span>(cacheNames=<span class="string">"secondary"</span>, key=<span class="string">"#p0"</span>) &#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">importBooks</span><span class="params">(String deposit, Date date)</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="CacheConfig"><a href="#CacheConfig" class="headerlink" title="@CacheConfig"></a>@CacheConfig</h2><p>&emsp;&emsp;@CacheConfig是类级别的注解，@Cacheable、@CachePut、@CacheEvict注解中都有cacheNames、keyGenerator、cacheManager、cacheResolver。而这些都可以通过@CacheConfig在类上面指定。如果方法上的注解提供了相应的属性，以方法上的为准。</p>
-<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig</span>(<span class="string">"books"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookRepositoryImpl</span> <span class="keyword">implements</span> <span class="title">BookRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Cacheable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">findBook</span><span class="params">(ISBN isbn)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Cache-SpEL执行上下文"><a href="#Cache-SpEL执行上下文" class="headerlink" title="Cache SpEL执行上下文"></a>Cache SpEL执行上下文</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th style="text-align:center">位置</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:center">示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>methoddName</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前被调用方法的名称</td>
-<td style="text-align:center">#root.methodName</td>
-</tr>
-<tr>
-<td>method</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前被调用的方法</td>
-<td style="text-align:center">#root.method.name</td>
-</tr>
-<tr>
-<td>target</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前被调用的目标对象</td>
-<td style="text-align:center">#root.target</td>
-</tr>
-<tr>
-<td>targetClass</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前被调用的目标对象类</td>
-<td style="text-align:center">#root.targetClass</td>
-</tr>
-<tr>
-<td>args</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前被调用的方法的参数列表（如@Cacheable(value={“cache1”, “cache2”})），则有两个cache</td>
-<td style="text-align:center">#root.args[0]</td>
-</tr>
-<tr>
-<td>caches</td>
-<td style="text-align:center">root对象</td>
-<td style="text-align:center">当前方法调用使用的缓存列表</td>
-<td style="text-align:center">#root.caches[0].name</td>
-</tr>
-<tr>
-<td>argument name</td>
-<td style="text-align:center">执行上下文</td>
-<td style="text-align:center">当前被调用的方法的参数，如findById(Long id)，我们可以通过#id拿到参数</td>
-<td style="text-align:center">#iban or #a0 (one can also use #p0 or #p&lt;#arg&gt; notation as an alias).</td>
-</tr>
-<tr>
-<td>result</td>
-<td style="text-align:center">执行上下文</td>
-<td style="text-align:center">方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’，’cache evict’的beforeInvocation=false）</td>
-<td style="text-align:center">#result</td>
-</tr>
-</tbody>
-</table>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://docs.spring.io/spring/docs/4.3.17.RELEASE/spring-framework-reference/htmlsingle/#cache" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/4.3.17.RELEASE/spring-framework-reference/htmlsingle/#cache</a></p>
-
+        <p>&emsp;&emsp;从3.1开始，Spring引入了对Cache的支持。其使用方法和原理都类似于Spring对事务管理的支持。Spring Cache是作用在方法上的，其核心思想是这样的：当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。所以在使用Spring Cache的时候我们要保证我们缓存的方法对于相同的方法参数要有相同的返回结果。<br>
+        
       
 
       
@@ -390,19 +345,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service <span class="comment">#停止firewall</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service <span class="comment">#禁止firewall开机启动</span></span><br><span class="line">firewall-cmd --state <span class="comment">#查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</span></span><br></pre></td></tr></table></figure>
-<h2 id="查看并安装编译环境"><a href="#查看并安装编译环境" class="headerlink" title="查看并安装编译环境"></a>查看并安装编译环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum list installed | grep gcc-c++ <span class="comment">#没有记录就是没有安装</span></span><br><span class="line">yum install -y gcc-c++ 	<span class="comment">#安装gcc-c++</span></span><br></pre></td></tr></table></figure>
-<h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>到<a href="https://redis.io/download" target="_blank" rel="noopener">redis</a>官网查看最新的版本，获取最新的下载链接，使用wget下载。本例中下载的版本是4.0.9<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz</span><br></pre></td></tr></table></figure></p>
-<h2 id="解压编译安装"><a href="#解压编译安装" class="headerlink" title="解压编译安装"></a>解压编译安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf redis-4.0.9.tar.gz </span><br><span class="line">cp -rf redis-4.0.9 /usr/<span class="built_in">local</span>/redis</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-<h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">src/redis-server redis.conf  <span class="comment">#启动redis服务</span></span><br><span class="line">src/redis-cli <span class="comment">#打开客户端</span></span><br><span class="line"><span class="built_in">set</span> foo boo</span><br><span class="line">get foo</span><br></pre></td></tr></table></figure>
-<h2 id="开启redis服务器远程访问"><a href="#开启redis服务器远程访问" class="headerlink" title="开启redis服务器远程访问"></a>开启redis服务器远程访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
-<p>找到bind 127.0.0.1,在前面加上’#’注释掉<br>找到protected-mode yes，修改为protected-mode no</p>
-<h2 id="安装成服务"><a href="#安装成服务" class="headerlink" title="安装成服务"></a>安装成服务</h2><p>copy redis_init_script到/etc/init.d/redis<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp utils/redis_init_script /etc/init.d/redis</span><br></pre></td></tr></table></figure></p>
-<p>编辑redis，添加一段注释在文件头部，支持chkconfig命令，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/redis</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"><span class="comment"># chkconfig: 2345 90 10</span></span><br><span class="line"><span class="comment"># description: redis</span></span><br><span class="line"><span class="comment"># ... (省略代码)</span></span><br><span class="line"> <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="string">"password"</span> shutdown</span><br><span class="line"><span class="comment"># ... (省略代码)</span></span><br></pre></td></tr></table></figure>
-<p>在etc下创建redis目录，并copy redis.conf到该目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/redis</span><br><span class="line">cp redis.conf /etc/redis/6379.conf</span><br></pre></td></tr></table></figure></p>
-<p>编辑一下6379.conf文件，将daemonize 的 no 值改成 yes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/redis/6379.conf</span><br></pre></td></tr></table></figure></p>
-<p>设置开机启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/redis</span><br><span class="line">chkconfig redis on	<span class="comment">#设置开机启动</span></span><br><span class="line">service redis start	<span class="comment">#启动redis服务</span></span><br><span class="line">service redis stop  <span class="comment">#停止redis服务</span></span><br></pre></td></tr></table></figure></p>
-
+        
       
 
       
@@ -494,10 +437,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="去掉小箭头"><a href="#去掉小箭头" class="headerlink" title="去掉小箭头"></a>去掉小箭头</h1><p>复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v <span class="number">29</span> /d "<span class="variable">%systemroot%</span>\system32\imageres.dll,<span class="number">197</span>" /t reg_sz /f</span><br><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe</span><br><span class="line"><span class="built_in">attrib</span> -s -r -h "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db"</span><br><span class="line"><span class="built_in">del</span> "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db" /f /q</span><br><span class="line"><span class="built_in">start</span> explorer</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-<h1 id="恢复小箭头"><a href="#恢复小箭头" class="headerlink" title="恢复小箭头"></a>恢复小箭头</h1><p>同理，将下面代码另存为.bat文件，管理员身份打开。就可恢复小箭头了。</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v <span class="number">29</span> /f</span><br><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe</span><br><span class="line"><span class="built_in">attrib</span> -s -r -h "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db"</span><br><span class="line"><span class="built_in">del</span> "<span class="variable">%userprofile%</span>\AppData\Local\iconcache.db" /f /q</span><br><span class="line"><span class="built_in">start</span> explorer</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+        <h1 id="去掉小箭头"><a href="#去掉小箭头" class="headerlink" title="去掉小箭头"></a>去掉小箭头</h1><p>复制下面的代码。新建一个文本文件。粘贴后另存为.bat文件，然后以管理员身份打开<br>
+        
       
 
       
@@ -582,12 +523,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li>下载tomcat<br> tomcat.apache.org</li>
-<li>下载安装java<br> 配置java环境变量</li>
-<li>启动tomcat<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">startup.sh</span><br><span class="line">stratup.bat</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
+<li>下载tomcat<br> tomcat.apache.org
+        
       
 
       
@@ -680,15 +617,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-article"><a href="#Create-a-new-article" class="headerlink" title="Create a new article"></a>Create a new article</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"article name"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        
       
 
       
@@ -837,7 +766,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,7 +786,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -862,14 +803,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">window</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
               </li>
             
             <div class="clearfix"></div>
